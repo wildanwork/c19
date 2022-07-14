@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Challenge 19</title>
+</head>
+<style>
+
+    h1{
+        color: crimson;
+    }
+    .button {
+        border: navy;
+        color: white;
+        padding: 15px 30px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 10px 5px;
+        cursor: pointer;
+        border-radius: 12px;
+    }
+
+    .buttonedit {
+        padding: 8px 16px;
+        border-radius: 12px;
+        background-color: rgb(0, 238, 20);
+        font-size: small;
+        border: 2px solid rgb(6, 240, 37);
+        cursor: pointer;
+        font-style: oblique;
+    }
+
+    .buttondelete {
+        padding: 8px 16px;
+        border-radius: 12px;
+        background-color: red;
+        font-size: small;
+        border: 2px solid rgb(245, 5, 5);
+        cursor: pointer;
+        font-style: oblique;
+    }
+
+    .button1 {
+        background-color: rgb(44, 44, 196);
+    }
+
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        width: 100%;
+        border: 1px solid #ddd;
+    }
+
+    th,
+    td {
+        text-align: left;
+        padding: 16px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+</style>
+
+<body>
+    <h1> <div>BREAD</div> (Browse, Read, Edit, Add, Delete)</h1>
+
+    <table style="width: 100%" border="1">
+        <tr>
+            <th>ID</th>
+            <th>String</th>
+            <th>Integer</th>
+            <th>Float</th>
+            <th>Date </th>
+            <th>Boolean</th>
+            <th>actions</th>
+        </tr>
+
+        <% rows.forEach((item,index)=>{ %>
+
+
+            <tr>
+                <td>
+                    <%= index+1 %>
+                </td>
+                <td>
+                    <%= item.string %>
+                </td>
+                <td>
+                    <%= item.integer%>
+                </td>
+                <td>
+                    <%= item.float%>
+                </td>
+                <td>
+                    <%= moment(item.date).format("MMMM Do YYYY") %>
+                </td>
+                <td>
+                    <%= item.boolean%>
+                </td>
+                <td>
+                    <button button class="buttonedit" type="button"
+                        onclick="location.href = '/edit/<%=index%>'">edit</button>
+                    <button button class="buttondelete" type="button"
+                        onclick="location.href = '/delete/<%=index%>'">Delete</button>
+
+                </td>
+            </tr>
+
+            <% }) %>
+
+    </table>
+    <button class="button button1" type="button" onclick="location.href = '/add'">add</button>
+</body>
+
+</html>
