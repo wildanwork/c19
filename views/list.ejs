@@ -6,13 +6,130 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Challenge 19</title>
+    <title>Challenge 20</title>
 </head>
 <style>
+    * {
+        box-sizing: border-box;
+    }
 
-    h1{
+    .pagination {
+        display: inline-block;
+    }
+
+    .pagination a {
+        color: black;
+        float: left;
+        padding: 8px 16px;
+        text-decoration: rgb(6, 240, 37);
+    }
+
+    .pagination a.active {
+        background-color: #1707fd;
+        color: white;
+        border: 1px solid #0004e6;
+        border-radius: 12px;
+    }
+
+    input[type=text],
+    select,
+    textarea {
+        width: 100%;
+        padding: 9px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        resize: vertical;
+    }
+
+    label {
+        padding: 2px 2px 2px 2px;
+
+        /* display: inline-block; */
+    }
+
+    input[type=submit] {
+        background-color: #0019fa;
+        color: white;
+        padding: 9px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        float: left;
+    }
+
+    input[type=submit]:hover {
+        background-color: #45a049;
+    }
+
+    input[type=number],
+    select,
+    textarea {
+        width: 100%;
+        padding: 9px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        resize: vertical;
+    }
+
+    input[type=date],
+    select,
+    textarea {
+        width: 100%;
+        padding: 9px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        resize: vertical;
+    }
+
+    input[type=boolean],
+    select,
+    textarea {
+        width: 100%;
+        padding: 9px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        resize: vertical;
+    }
+
+    .container {
+        border-radius: 5px;
+        padding: 20px;
+    }
+
+    .col-25 {
+        float: left;
+        width: 10%;
+        margin-top: 2px;
+    }
+
+    .col-75 {
+        float: right;
+        width: 90%;
+        margin-top: 2px;
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+    @media screen and (max-width: 600px) {
+
+        .col-25,
+        .col-75,
+        input[type=submit] {
+            width: 100%;
+            margin-top: 0;
+        }
+    }
+
+    h1 {
         color: crimson;
     }
+
     .button {
         border: navy;
         color: white;
@@ -69,8 +186,79 @@
 </style>
 
 <body>
-    <h1> <div>BREAD</div> (Browse, Read, Edit, Add, Delete)</h1>
+    <h1>
+        <div>BREAD</div> (Browse, Read, Edit, Add, Delete)
+    </h1>
+    <p>
+    <h2> filter</h2>
+    </p>
+    <div class="container">
+        <form action="" method="post">
 
+            <div class="row">
+                <div class="col-25">
+                    <input type="checkbox" name="string" id="string" value="string">
+                    <label for="string">String </label>
+                </div>
+                <div class="col-75">
+                    <input type="text" name="string" placeholder="Masukkan String">
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-25">
+                    <input type="checkbox" name="integer" id="integer" value="integer">
+                    <label for="integer">Integer </label>
+                </div>
+                <div class="col-75">
+                    <input type="number" name="integer" placeholder="Masukkan integer">
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-25">
+                    <input type="checkbox" name="float" id="float" value="float">
+
+                    <label for="float">Float </label>
+
+                </div>
+                <div class="col-75">
+                    <input type="number" name="float" step="any" placeholder="Masukkan float">
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-25">
+                    <input type="checkbox" name="date" id="date" value="date">
+
+                    <label for="date">Tanggal </label>
+                </div>
+                <div class="col-75">
+                    <input class="col-75" type="date" name="date" placeholder="Masukkan Tanggal">
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-25">
+                    <input type="checkbox" name="boolean" id="boolean" value="boolean">
+
+                    <label for="boolean">Boolean </label>
+                </div>
+                <div class="col-75">
+                    <select name="boolean" placeholder="Masukkan Boolean">
+                        <option value="">--Choose The Boolean--</option>
+                        <option value="true">True</option>
+                        <option value="false" %> >False</option>
+                    </select>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <input type="submit"></input>
+            </div>
+            <br>
+        </form>
+    </div>
     <table style="width: 100%" border="1">
         <tr>
             <th>ID</th>
@@ -87,28 +275,28 @@
 
             <tr>
                 <td>
-                    <%= index+1 %>
+                    <%= item._id %>
                 </td>
                 <td>
-                    <%= item.string %>
+                    <%= item._string %>
                 </td>
                 <td>
-                    <%= item.integer%>
+                    <%= item._integer%>
                 </td>
                 <td>
-                    <%= item.float%>
+                    <%= item._float%>
                 </td>
                 <td>
-                    <%= moment(item.date).format("MMMM Do YYYY") %>
+                    <%= item._date ? moment(item._date).format("MMMM Do YYYY") : 'kosong' %>
                 </td>
                 <td>
-                    <%= item.boolean%>
+                    <%= item._boolean%>
                 </td>
                 <td>
                     <button button class="buttonedit" type="button"
-                        onclick="location.href = '/edit/<%=index%>'">edit</button>
+                        onclick="location.href = '/edit/<%=item._id%>'">edit</button>
                     <button button class="buttondelete" type="button"
-                        onclick="location.href = '/delete/<%=index%>'">Delete</button>
+                        onclick="location.href = '/delete/<%=item._id%>'">Delete</button>
 
                 </td>
             </tr>
@@ -117,6 +305,20 @@
 
     </table>
     <button class="button button1" type="button" onclick="location.href = '/add'">add</button>
+    <br>
+    <div class="pagination">
+        <a href="/?page=<%= page > 1 ? page-1 : 1%>">&laquo;</a>
+        <% for (let i=1 ; i <=pages; i++){ %>
+
+
+            <a class="<%= page == i ? 'active' : ''%>" href="/?page=<%= i %>">
+                <%=i%>
+            </a>
+
+            <% } %>
+                <a href="/?page=<%= page < pages? parseInt(page)+1: pages %>">&raquo;</a>
+    </div>
+
 </body>
 
 </html>
